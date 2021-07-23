@@ -51,7 +51,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (productExists) {
         productExists.amount = currentAmount + 1;
       } else {
-        const product = await api.get(`/product/${productId}`)
+        const product = await api.get(`/products/${productId}`)
           .then(response => response.data);
 
         const newProduct = {
@@ -117,6 +117,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         }
         return product;
       })
+
+      setCart(newCart);
 
       localStorage.setItem('@RocketShoes:cart', JSON.stringify(newCart));
 
